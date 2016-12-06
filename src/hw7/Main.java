@@ -14,6 +14,21 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+    /*public static void main(String[] args) {
+        Heap heap = new Heap(true, 4);
+        Node data1 = new Node(50,0,2, false);
+        Node data2 = new Node(40,1,3, false);
+        Node data3 = new Node(70,2,4, false);
+        Node data4 = new Node(30,3,5, true);
+        heap.push(data1);
+        heap.push(data2);
+        heap.push(data3);
+        heap.push(data4);
+        heap.printArray();
+        heap.pop();
+        heap.printArray();
+    }*/
+
     public static void main(String[] args) {
         StockMarket market = new StockMarket(10, 10); // 10 investos, 10 stocks
         // Add 10 investors and the initial balance
@@ -41,12 +56,12 @@ public class Main {
         
         market.showStockOwnership();
         // Investors spent half of their money to randomly buy stocks from companies (IPO).
-        market.simulateIPO(); //
-        //market.loadSavedIPO(); // load simulatedIPO
+        //market.simulateIPO(); //
+        market.loadSavedIPO(); // load simulatedIPO
         market.showStockOwnership();
-        
-        market.portfolio("Darunphop");
         market.portfolio("Aunnop");
+        market.portfolio("Darunphop");
+
         
         
         // To uncomment below, you need to implement Heap

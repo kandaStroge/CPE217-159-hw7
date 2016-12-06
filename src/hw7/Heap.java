@@ -24,22 +24,57 @@ public class Heap {
         timeCounter = 0;
     }
     public Node top(){
-        return null; // FIX THIS
+        return arr[1]; //start with 1 from 2n+1
     }
     
     public void push(Node node){
         // time stamp
-        node.timestamp = 0; // FIX THIS
+        node.timestamp = back; // FIX THIS
         
         // Do something
         // Push new node at the end then sift (percolate) up
+        arr[back] = node;
+        back++;
+        timeCounter++;
+        if(isMinHeap){
+            while(arr[(int) node.timestamp/2] != null && arr[(int) node.timestamp/2].price > node.price){
+                long tmp = node.timestamp;
+                swap((int) tmp,(int) tmp/2);
+                arr[(int) tmp].timestamp = tmp;
+                node.timestamp = (int) tmp/2;
+            }
+        }else{
+            while(arr[(int) node.timestamp/2] != null && arr[(int) node.timestamp/2].price < node.price){
+                long tmp = node.timestamp;
+                swap((int) tmp,(int) tmp/2);
+                arr[(int) tmp].timestamp = tmp;
+                node.timestamp = (int) tmp/2;
+            }
+        }
     }
-    public Node pop(){
+    public Node pop() {
         // DO SOMETHING
-        // 1. mark the root for return
-        // 2. Replace the last node with the root
-        // 3. Sift (percolate) down
-        return arr[1]; // You may have to fix this line
+        if (back == 1) return null;
+        else {
+            // 1. mark the root for return
+            Node node = arr[1];
+            // 2. Replace the last node with the root
+            back--;
+            arr[1] = arr[back - 1];
+            if (arr[1] != null) {
+
+                arr[1].timestamp = 1;
+                // 3. Sift (percolate) down
+                int tmp = 1;
+                while (arr[2 * tmp] != null) {
+                    swap(tmp, 2 * tmp);
+                    arr[tmp].timestamp = tmp;
+                    tmp *= 2;
+                    arr[tmp].timestamp = tmp;
+                }
+            }
+            return node; // You may have to fix this line
+        }
     }
 
     // Optional: If you do not know what this function does, you do not have to use it

@@ -20,10 +20,10 @@ public class Node {
     // You may create your own function if you do not understand my code
     public boolean compare(Node rightNode){
         if (this.price == rightNode.price) {
-            return false; // FIX THIS
+            return true; // FIX THIS
         }else{
             if (isMinHeap){
-                return false; // FIX THIS
+                return true; // FIX THIS
             }else{
                 return false; // FIX THIS
             }
